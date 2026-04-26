@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import { PageViewTracker } from "./PageViewTracker";
 
 export const metadata: Metadata = {
   title: "FoodBridge IP — Connecting Thai Food Science to Global Business",
@@ -15,6 +16,7 @@ export default function RootLayout({
   return (
     <html lang="th">
       <body>
+        <PageViewTracker />
         <Nav />
         {children}
       </body>
@@ -132,4 +134,4 @@ function LayersIcon() {
       <path d="M2 12l10 5 10-5" />
     </svg>
   );
-}
+} 

@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import styles from "./page.module.css";
+import WaitlistSection from "./WaitlistSection";
 
 /* ─────────────────────────────────────────────
    app/page.tsx  →  Route: /
@@ -15,6 +16,7 @@ export default function LandingPage() {
       <TrustStrip />
       <RoadmapSection />
       <ConsultantSection />
+      <WaitlistSection /> 
       <Footer />
     </main>
   );
