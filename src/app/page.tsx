@@ -72,11 +72,10 @@ function HeroSection() {
           <div className={styles.heroStats}>
             {STATS.map((s) => (
               <div key={s.label}>
-                <div className={styles.statNum}>{s.num}</div>
-                <div className={styles.statLabel}>{s.label}</div>
-              </div>
-            ))}
+              <div className={styles.statLabel}>{s.label}</div>
           </div>
+        ))}
+</div>
         </div>
 
         {/* RIGHT: Happy Robot Visual */}
@@ -343,12 +342,11 @@ function SectionHeader({
    DATA
 ══════════════════════════════════════════ */
 const STATS = [
-  { label: "Validated IP Assets", num: 0  },
-  { label: "Pilot Factory", num: 0  },
-  { label: "Legal Documents", num: 0  },
-  { label: "Export Markets", num: 0  },
+  { label: "Validated IP Assets" },
+  { label: "Pilot Factory" },
+  { label: "Legal Documents" },
+  { label: "Export Markets" },
 ];
-
 /* ══════════════════════════════════════════
    ICON COMPONENTS (inline SVG, zero-dep)
 ══════════════════════════════════════════ */
