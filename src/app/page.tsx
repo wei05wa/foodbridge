@@ -3,6 +3,9 @@
 import Link from "next/link";
 import styles from "./page.module.css";
 import WaitlistSection from "./WaitlistSection";
+import ResearchCarousel from "./ResearchCarousel";
+
+import CityScene from "./CityScene";
 
 /* ─────────────────────────────────────────────
    app/page.tsx  →  Route: /
@@ -16,6 +19,7 @@ export default function LandingPage() {
       <TrustStrip />
       <RoadmapSection />
       <ConsultantSection />
+      <ResearchCarousel/>
       <WaitlistSection /> 
       <Footer />
     </main>
@@ -36,11 +40,11 @@ function HeroSection() {
       </div>
 
       <div className={styles.heroInner}>
-        {/* LEFT: copy */}
+        {/* LEFT: Content */}
         <div className={styles.heroContent}>
           <div className={styles.heroEyebrow}>
             <span className={styles.eyebrowDot} />
-            Thailand&apos;s #1 Food IP Platform
+            Thailand&apos;s Food IP Platform
           </div>
 
           <h1 className={styles.heroH1}>
@@ -55,7 +59,7 @@ function HeroSection() {
           </p>
 
           <div className={styles.heroActions}>
-            <Link href="/home" className="btn-primary">
+            <Link href="#waitlist" className="btn-primary">
               <SearchIcon size={16} />
               Explore IP Hub
             </Link>
@@ -75,62 +79,25 @@ function HeroSection() {
           </div>
         </div>
 
-        {/* RIGHT: stacked card visual */}
+        {/* RIGHT: Happy Robot Visual */}
         <div className={styles.heroVisual}>
-          <HeroCardStack />
+           <CityScene />
         </div>
       </div>
     </section>
   );
 }
 
-function HeroCardStack() {
-  return (
-    <div className={styles.cardStack}>
-      <div className={`${styles.cardBg} ${styles.cardBg1}`} />
-      <div className={`${styles.cardBg} ${styles.cardBg2}`} />
-      <div className={styles.cardMain}>
-        <div className="tag t-p">
-          <GridIcon size={11} />
-          Functional Food
-        </div>
-        <div className={styles.cardTitle}>
-          High-Antioxidant
-          <br />
-          Mangosteen Extract
-        </div>
-        <p className={styles.cardDesc}>
-          Patented extraction yielding 3× bioavailable xanthones vs. standard
-          processes. Ready for nutraceutical licensing.
-        </p>
-        <div className={styles.cardMetric}>
-          <div className={styles.metricLabel}>Market Potential</div>
-          <div className={styles.metricValue}>$4.2M TAM</div>
-          <div className={styles.metricBar}>
-            <div className={styles.metricFill} style={{ width: "78%" }} />
-          </div>
-        </div>
-        <div className={styles.cardFooter}>
-          <span className={styles.cardFooterLabel}>Chulalongkorn Univ.</span>
-          <Link href="/home" className="btn-match">
-            Match Now
-            <ArrowRightIcon size={12} />
-          </Link>
-        </div>
-      </div>
-    </div>
-  );
-}
 
 /* ══════════════════════════════════════════
    TRUST STRIP
 ══════════════════════════════════════════ */
 function TrustStrip() {
-  const partners = ["NFI Thailand", "Genfosis", "SPACE-F", "TCELS", "BIOTEC", "FDATH"];
+  const partners = ["Computer Engineering Student, Chulalongkorn University", "Our Partner"];
   return (
     <div className={styles.trustStrip}>
       <div className={styles.trustInner}>
-        <span className={styles.trustLabel}>Trusted by</span>
+        <span className={styles.trustLabel}>Made and Trusted by</span>
         <div className={styles.trustDivider} />
         <div className={styles.trustLogos}>
           {partners.map((p) => (
@@ -246,13 +213,13 @@ function ConsultantSection() {
               focus on your vision; we handle the complexity.
             </p>
             <div className={styles.consultantActions}>
-              <Link href="/home" className={styles.btnWhite}>
+              <Link href="#waitlist" className={styles.btnWhite}>
                 Book a Consultation
                 <ArrowRightIcon size={14} />
               </Link>
-              <a href="#" className={styles.btnOutlineWhite}>
+              <a href="#roadmap" className={styles.btnOutlineWhite}>
                 <PlayIcon size={13} />
-                Watch Demo
+                Watch a process
               </a>
             </div>
           </div>
@@ -290,7 +257,7 @@ const FOOTER_COLS = [
   },
 ];
 
-const ECOSYSTEM_PARTNERS = ["NFI Thailand", "Genfosis", "SPACE-F"];
+const ECOSYSTEM_PARTNERS = ["Matching", "Planing", "Export"];
 
 function Footer() {
   return (
@@ -376,9 +343,10 @@ function SectionHeader({
    DATA
 ══════════════════════════════════════════ */
 const STATS = [
-  { num: "240+", label: "Validated IP Assets" },
-  { num: "48", label: "OEM Partners" },
-  { num: "32", label: "Export Markets" },
+  { label: "Validated IP Assets" },
+  { label: "Pilot Factory" },
+  { label: "Legal Documents" },
+  { label: "Export Markets" },
 ];
 
 /* ══════════════════════════════════════════

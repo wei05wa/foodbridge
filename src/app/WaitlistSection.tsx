@@ -24,8 +24,8 @@ const TRACK_CONFIG = {
   },
   sme: {
     formTitle: 'Access Validated Thai Food IP',
-    formSub: 'Join the waitlist to browse ready-to-license food science IP and connect with certified OEM manufacturers.',
-    orgLabel: 'Company Name',
+    formSub: 'Join the waitlist to browse ready to license food science IP and connect with certified Pilot Factory , Legal Documents Service for get ready export to global market.',
+    orgLabel: 'Company/Business Name',
     orgPlaceholder: 'Your Company Ltd.',
     emailPlaceholder: 'you@company.com',
     roleOptions: [
@@ -100,7 +100,7 @@ export default function WaitlistSection() {
           Join the Waitlist
         </h2>
         <p style={{ textAlign: 'center', color: '#5F5E5A', marginBottom: 36, lineHeight: 1.6 }}>
-          Tell us who you are — we have a track built for you.
+          ลงทะเบียนเพื่อรับสิทธิใช้งาน FoodBridge IP ในรอบแรกก่อนใคร
         </p>
 
         {/* Toggle */}
@@ -118,7 +118,7 @@ export default function WaitlistSection() {
                 transition: 'all 0.2s',
               }}
             >
-              {t === 'researcher' ? '🔬 Researcher / Institution' : '🏭 SME / Business Partner'}
+              {t === 'researcher' ? '🔬 Researcher / Institution' : '🏭 SME / Business Owner'}
             </button>
           ))}
         </div>

@@ -37,16 +37,7 @@ function Nav() {
       </a>
 
       <div style={navLinksStyle}>
-        <a href="/home" style={navLinkStyle}>
-          Matching Hub
-        </a>
-        <a href="#" style={navLinkStyle}>
-          OEM Network
-        </a>
-        <a href="#" style={navLinkStyle}>
-          Concierge
-        </a>
-        <a href="#" style={navCtaStyle}>
+        <a href="#waitlist" style={navCtaStyle}>
           Get Started
         </a>
       </div>
