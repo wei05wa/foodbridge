@@ -343,10 +343,10 @@ function SectionHeader({
    DATA
 ══════════════════════════════════════════ */
 const STATS = [
-  { label: "Validated IP Assets" },
-  { label: "Pilot Factory" },
-  { label: "Legal Documents" },
-  { label: "Export Markets" },
+  { label: "Validated IP Assets", num: 0  },
+  { label: "Pilot Factory", num: 0  },
+  { label: "Legal Documents", num: 0  },
+  { label: "Export Markets", num: 0  },
 ];
 
 /* ══════════════════════════════════════════
