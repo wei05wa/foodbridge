@@ -59,7 +59,7 @@ export default function DashboardPage() {
       <div style={styles.header}>
         <div>
           <div style={styles.eyebrow}>FoodBridge IP</div>
-          <h1 style={styles.title}>Investor Dashboard</h1>
+          <h1 style={styles.title}>Analysis Dashboard View</h1>
           <p style={styles.sub}>Live traction data · Updated in real-time</p>
         </div>
         <div style={styles.liveBadge}>
