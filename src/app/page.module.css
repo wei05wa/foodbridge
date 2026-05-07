@@ -800,3 +800,100 @@
     gap: 20px;
   }
 }
+
+/* ══════════════════════════════════════════
+   EXPLORE HUB DROPDOWN  — add to page.module.css
+══════════════════════════════════════════ */
+
+/* Wrapper keeps the dropdown positioned relative to the button */
+.exploreDropdownWrap {
+  position: relative;
+  display: inline-flex;
+}
+
+/* The floating panel */
+.exploreDropdown {
+  position: absolute;
+  top: calc(100% + 10px);
+  left: 0;
+  z-index: 50;
+  min-width: 280px;
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 14px;
+  box-shadow:
+    0 4px 6px -1px rgba(0, 0, 0, 0.07),
+    0 16px 40px -4px rgba(0, 0, 0, 0.12);
+  padding: 10px;
+  animation: dropdownIn 0.18s ease;
+}
+
+@keyframes dropdownIn {
+  from { opacity: 0; transform: translateY(-6px) scale(0.97); }
+  to   { opacity: 1; transform: translateY(0)   scale(1);    }
+}
+
+/* "I am a…" label */
+.dropdownLabel {
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #9ca3af;
+  padding: 4px 10px 8px;
+  margin: 0;
+}
+
+/* Each role row */
+.dropdownItem {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  text-decoration: none;
+  color: inherit;
+  transition: background 0.15s;
+  cursor: pointer;
+}
+
+.dropdownItem:hover {
+  background: #f5f7ff;
+}
+
+.dropdownItem:hover .dropdownItemTitle {
+  color: #4f46e5; /* match your primary accent */
+}
+
+/* Icon bubble */
+.dropdownItemIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: #eef2ff;
+  color: #4f46e5;
+  flex-shrink: 0;
+}
+
+.dropdownItemTitle {
+  font-size: 0.9rem;
+  font-weight: 650;
+  color: #111827;
+  transition: color 0.15s;
+}
+
+.dropdownItemSub {
+  font-size: 0.75rem;
+  color: #6b7280;
+  margin-top: 1px;
+}
+
+/* Push the arrow to the far right */
+.dropdownItem > svg:last-child {
+  margin-left: auto;
+  color: #9ca3af;
+  flex-shrink: 0;
+}

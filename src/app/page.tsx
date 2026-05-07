@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { useState, useRef, useEffect } from "react";
 import styles from "./page.module.css";
 import WaitlistSection from "./WaitlistSection";
 import ResearchCarousel from "./ResearchCarousel";
@@ -23,6 +24,76 @@ export default function LandingPage() {
       <WaitlistSection /> 
       <Footer />
     </main>
+  );
+}
+
+/* ══════════════════════════════════════════
+   EXPLORE HUB DROPDOWN
+══════════════════════════════════════════ */
+function ExploreHubDropdown() {
+  const [open, setOpen] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+
+  // Close when clicking outside
+  useEffect(() => {
+    function handleClickOutside(e: MouseEvent) {
+      if (ref.current && !ref.current.contains(e.target as Node)) {
+        setOpen(false);
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+  return (
+    <div ref={ref} className={styles.exploreDropdownWrap}>
+      <button
+        className="btn-primary"
+        onClick={() => setOpen((v) => !v)}
+        aria-haspopup="true"
+        aria-expanded={open}
+      >
+        <SearchIcon size={16} />
+        Explore Hub
+        <ChevronDownIcon size={14} style={{ marginLeft: 4, transition: "transform 0.2s", transform: open ? "rotate(180deg)" : "rotate(0deg)" }} />
+      </button>
+
+      {open && (
+        <div className={styles.exploreDropdown}>
+          <p className={styles.dropdownLabel}>I am a…</p>
+
+          <Link
+            href="/researcher"
+            className={styles.dropdownItem}
+            onClick={() => setOpen(false)}
+          >
+            <div className={styles.dropdownItemIcon}>
+              <FlaskIcon size={20} />
+            </div>
+            <div>
+              <div className={styles.dropdownItemTitle}>Researcher</div>
+              <div className={styles.dropdownItemSub}>List & license your food science IP</div>
+            </div>
+            <ArrowRightIcon size={14} />
+          </Link>
+
+          <Link
+            href="/businessowner/main"
+            className={styles.dropdownItem}
+            onClick={() => setOpen(false)}
+          >
+            <div className={styles.dropdownItemIcon}>
+              <BriefcaseIcon size={20} />
+            </div>
+            <div>
+              <div className={styles.dropdownItemTitle}>Business Owner</div>
+              <div className={styles.dropdownItemSub}>Find IP assets & OEM partners</div>
+            </div>
+            <ArrowRightIcon size={14} />
+          </Link>
+        </div>
+      )}
+    </div>
   );
 }
 
@@ -59,10 +130,7 @@ function HeroSection() {
           </p>
 
           <div className={styles.heroActions}>
-            <Link href="#waitlist" className="btn-primary">
-              <SearchIcon size={16} />
-              Explore IP Hub
-            </Link>
+            <ExploreHubDropdown />
             <a href="#roadmap" className="btn-secondary">
               <PlayIcon size={16} />
               View Roadmap
@@ -347,6 +415,7 @@ const STATS = [
   { label: "Legal Documents" },
   { label: "Export Markets" },
 ];
+
 /* ══════════════════════════════════════════
    ICON COMPONENTS (inline SVG, zero-dep)
 ══════════════════════════════════════════ */
@@ -371,10 +440,27 @@ function ArrowRightIcon({ size = 14 }: { size?: number }) {
     </svg>
   );
 }
-function GridIcon({ size = 12 }: { size?: number }) {
+function ChevronDownIcon({ size = 14, style }: { size?: number; style?: React.CSSProperties }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={style}>
+      <polyline points="6 9 12 15 18 9" />
+    </svg>
+  );
+}
+function FlaskIcon({ size = 20 }: { size?: number }) {
   return (
     <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v18m0 0h10a2 2 0 0 0 2-2V9M9 21H5a2 2 0 0 1-2-2V9m0 0h18" />
+      <path d="M9 3h6m-6 0v6l-4 8a2 2 0 0 0 1.8 2.9h10.4A2 2 0 0 0 19 17l-4-8V3" />
+      <path d="M6.5 15h11" />
+    </svg>
+  );
+}
+function BriefcaseIcon({ size = 20 }: { size?: number }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <rect x="2" y="7" width="20" height="14" rx="2" />
+      <path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2" />
+      <line x1="12" y1="12" x2="12" y2="12" />
     </svg>
   );
 }
