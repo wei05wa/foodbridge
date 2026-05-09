@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useMemo, useCallback } from "react";
-import { IP_DATA, IpCard, IpCategory } from "@/src/lib/data";
+import { IP_DATA, IpCard, IpCategory } from "@/lib/data";
 import styles from "./page.module.css";
 
 /* ─────────────────────────────────────────────
