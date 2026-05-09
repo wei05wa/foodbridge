@@ -1,10 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { createClient } from "@supabase/supabase-js";
-
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-);
+import { getSupabase } from "@/lib/supabase";
 
 export async function POST(req: NextRequest) {
   try {
@@ -19,7 +14,7 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "กรุณากรอกชื่อและอีเมล" }, { status: 400 });
     }
 
-    const { error } = await supabase
+    const { error } = await getSupabase()
       .from("researcher_registrations")
       .insert([{
         first_name, last_name, email, institution, position, department,

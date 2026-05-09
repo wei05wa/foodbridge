@@ -1,10 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { createClient } from "@supabase/supabase-js";
-
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.SUPABASE_SERVICE_ROLE_KEY!
-);
+import { getSupabase } from "@/lib/supabase";
 
 export async function POST(req: NextRequest) {
   try {
@@ -22,7 +17,7 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "กรุณากรอกชื่อและอีเมล" }, { status: 400 });
     }
 
-    const { data, error } = await supabase
+    const { data, error } = await getSupabase()
       .from("business_profiles")
       .insert([{
         first_name, last_name, email,

@@ -1,25 +1,9 @@
-import { createClient, SupabaseClient } from "@supabase/supabase-js";
+import { createClient } from "@supabase/supabase-js";
 
-let _client: SupabaseClient | null = null;
-
-export function getSupabase(): SupabaseClient {
-  if (_client) return _client;
-
-  const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
-  const key = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
-
-  if (!url || !key) {
-    throw new Error(
-      "Missing NEXT_PUBLIC_SUPABASE_URL or NEXT_PUBLIC_SUPABASE_ANON_KEY"
-    );
-  }
-
-  _client = createClient(url, key);
-  return _client;
+// getSupabase() is called at runtime (inside request handlers),
+// never at module evaluation time — so build never crashes.
+export function getSupabase() {
+  const url = process.env.NEXT_PUBLIC_SUPABASE_URL ?? "";
+  const key = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ?? "";
+  return createClient(url, key);
 }
-
-// backward-compat named export (lazy)
-export const supabase = {
-  from: (...args: Parameters<SupabaseClient["from"]>) =>
-    getSupabase().from(...args),
-};
