@@ -3,7 +3,7 @@ import { createClient } from "@supabase/supabase-js";
 export function getSupabase() {
   return createClient(
     "https://hjvbdjupknqzynbtwcch.supabase.co",
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhqdmJkanVwa25xenluYnR3Y2NoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDM2MjA0OTIsImV4cCI6MjA1OTE5NjQ5Mn0.PWyNN0slcvgSwOXHub17ZlmjG0VtCT6ccTaF0rTTI7Q"
+    "eeyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhqdmJkanVwa25xenluYnR3Y2NoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzcxNTM1MzYsImV4cCI6MjA5MjcyOTUzNn0.PWyNN0slcvgSwOXHub17ZlmjG0VtCT6ccTaF0rTTI7Q"
   );
 }
 
