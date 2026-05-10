@@ -3,6 +3,10 @@ import { getSupabase } from "@/lib/supabase";
 
 export async function POST(req: NextRequest) {
   try {
+
+    console.log("URL:", process.env.NEXT_PUBLIC_SUPABASE_URL?.slice(0, 30));
+    console.log("KEY:", process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY?.slice(0, 30));
+    
     const body = await req.json();
     const {
       first_name, last_name, email,
@@ -42,4 +46,6 @@ export async function POST(req: NextRequest) {
     console.error(err);
     return NextResponse.json({ error: "เกิดข้อผิดพลาด" }, { status: 500 });
   }
+
+  
 }
