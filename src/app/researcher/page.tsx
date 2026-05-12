@@ -69,79 +69,26 @@ export default function ResearcherPage() {
   const [selected, setSelected]   = useState<Publication | null>(null);
 
   /* ── Fetch from MUREX Pure API ── */
-  const fetchPapers = useCallback(async () => {
-    setLoading(true);
-    setError("");
-    try {
-      /* Elsevier Pure public API — search publications by keyword */
-      const keyword = FOOD_KEYWORDS.slice(0, 5).join(" OR ");
-      const url = `https://murex.mahidol.ac.th/api/publications?searchString=${encodeURIComponent("food nutrition nutraceutical functional herb")}&size=50&offset=0&fields=uuid,title,abstract,publicationStatuses,contributors,journalAssociation,electronicVersions`;
+const fetchPapers = useCallback(async () => {
+  setLoading(true);
+  try {
+    const res = await fetch("/api/murex-papers");
+    const data = await res.json();
 
-      const res = await fetch(url, {
-        headers: { Accept: "application/json" },
-      });
-
-      if (!res.ok) throw new Error("API unavailable");
-
-      const data = await res.json();
-      const items: Publication[] = (data.items ?? data.results ?? [])
-        .filter((item: any) => {
-          const text = `${item.title?.value ?? item.title ?? ""} ${item.abstract?.text ?? ""}`.toLowerCase();
-          return FOOD_KEYWORDS.some((kw) => text.includes(kw));
-        })
-        .slice(0, 40)
-        .map((item: any) => {
-          const title =
-            item.title?.value ??
-            (typeof item.title === "string" ? item.title : "Untitled");
-          const abstract =
-            item.abstract?.text ??
-            item.abstract?.value ??
-            "";
-          const year =
-            item.publicationStatuses?.[0]?.publicationDate?.year ??
-            item.year ?? null;
-          const authors = (item.contributors ?? [])
-            .slice(0, 3)
-            .map((c: any) =>
-              c.name?.lastName
-                ? `${c.name.firstName ?? ""} ${c.name.lastName}`.trim()
-                : c.displayName ?? ""
-            )
-            .filter(Boolean);
-          const journal =
-            item.journalAssociation?.title?.value ??
-            item.journalAssociation?.journal?.title ??
-            "Mahidol University";
-          const doi =
-            item.electronicVersions?.[0]?.doi ?? item.doi ?? null;
-          const url_link = doi
-            ? `https://doi.org/${doi}`
-            : `https://murex.mahidol.ac.th/en/publications/${item.uuid}`;
-
-          return {
-            uuid: item.uuid ?? Math.random().toString(36).slice(2),
-            title,
-            abstract,
-            year,
-            authors,
-            journal,
-            category: detectCategory(`${title} ${abstract}`),
-            url: url_link,
-            doi,
-          };
-        });
-
-      setPapers(items.length > 0 ? items : FALLBACK_PAPERS);
-    } catch {
-      /* Fallback to curated real papers if API fails */
+    if (data.items?.length > 0) {
+      setPapers(data.items.map((p: any) => ({
+        ...p,
+        category: detectCategory(`${p.title} ${p.abstract}`),
+      })));
+    } else {
       setPapers(FALLBACK_PAPERS);
-      setError("");
-    } finally {
-      setLoading(false);
     }
-  }, []);
-
+  } catch {
+    setPapers(FALLBACK_PAPERS);
+  } finally {
+    setLoading(false);
+  }
+}, []);
   useEffect(() => { fetchPapers(); }, [fetchPapers]);
 
   /* ── Filter ── */
