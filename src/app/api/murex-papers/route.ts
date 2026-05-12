@@ -28,7 +28,7 @@ export async function GET() {
   try {
     // Mahidol University OpenAlex institution ID = I86987016
     const url = new URL("https://api.openalex.org/works");
-    url.searchParams.set("filter", "authorships.institution.id:I86987016,title.search:food|nutrition|nutraceutical|probiotic|bioactive|herb|fermentation");
+    url.searchParams.set("filter", "authorships.institutions.id:I86987016,title.search:food nutrition nutraceutical probiotic bioactive herb fermentation");
     url.searchParams.set("per_page", "50");
     url.searchParams.set("sort", "publication_year:desc");
     url.searchParams.set("select", "id,title,abstract_inverted_index,publication_year,authorships,primary_location,doi");
