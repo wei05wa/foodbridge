@@ -288,7 +288,7 @@ const UNI_META: Record<string, { color: string; short: string }> = {
   "Chulalongkorn":  { color: "#8B0000", short: "CU" },
 };
 
-type RegStatus = "idle" | "loading" | "success" | "error";
+
 
 export default function ResearcherPage() {
   const [search, setSearch]       = useState("");
